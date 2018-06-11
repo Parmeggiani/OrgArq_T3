@@ -1,7 +1,6 @@
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Memory {
       
@@ -36,44 +35,9 @@ public class Memory {
                         cont = 0;
                   }
                   
-                  if ( mapAssoc16[cont][0].equals("  ") || !mapAssoc16[cont][0].equals(tag) ) {
-                        while(j <= 15){
-                              if(mapAssoc16[j][0].equals(tag)){
-                                    hitMissA16.add("Hit");
-                                    break;
-                              }
-                              j++;
-                              if(j > 15){
-                                    j=0;
-                                    mapAssoc16[cont][0] = tag;
-                                    hitMissA16.add("Miss");
-                                    if (data.equals("00")) {
-                                          mapAssoc16[cont][1] = data;
-                                          cont++;
-                                          break;
-                                    }
-                                    else if (data.equals("01")) {
-                                          mapAssoc16[cont][2] = data;
-                                          cont++;
-                                          break;
-                                    }
-                                    else if (data.equals("10")) {
-                                          mapAssoc16[cont][3] = data;
-                                          cont++;
-                                          break;
-                                    }
-                                    else if (data.equals("11")) {
-                                          mapAssoc16[cont][4] = data;
-                                          cont++;
-                                          break;
-                                    }
-                                    
-                              }
-                        }
-                        
-                  }
-                  else if (mapAssoc16[cont][0].equals(tag)) {
-                        hitMissA16.add("Hit");
+                  if (mapAssoc16[cont][0].equals(tag)) {
+                        hitMissA16.add(i,"Hit");
+                        cont++;
                         if (data.equals("00")) {
                               mapAssoc16[cont][1] = data;
                         }
@@ -86,6 +50,34 @@ public class Memory {
                         else if (data.equals("11")) {
                               mapAssoc16[cont][4] = data;
                         }
+                        //continue;
+                  }
+                  else if (mapAssoc16[cont][0].equals("  ") || !mapAssoc16[cont][0].equals(tag)) {
+                        while( j < 16){
+                              if(mapAssoc16[j][0].equals(tag)){
+                                    hitMissA16.add(i,"Hit");
+                                    break;
+                              }
+                              j++;
+                        }
+                        if(j>=16) {
+                              mapAssoc16[cont][0] = tag;
+                              hitMissA16.add(i,"Miss");
+                              if (data.equals("00")) {
+                                    mapAssoc16[cont][1] = data;
+                              }
+                              else if (data.equals("01")) {
+                                    mapAssoc16[cont][2] = data;
+                              }
+                              else if (data.equals("10")) {
+                                    mapAssoc16[cont][3] = data;
+                              }
+                              else if (data.equals("11")) {
+                                    mapAssoc16[cont][4] = data;
+                              }
+                              cont++;
+                        }
+                        j =0;
                   }
                   
             }
@@ -104,33 +96,8 @@ public class Memory {
                   if(cont > 31){
                         cont = 0;
                   }
-                  
-                  if ( mapAssoc32[cont][0].equals(" ") || !mapAssoc32[cont][0].equals(tag) ) {
-                        while(j <= 31){
-                              if(mapAssoc32[j][0].equals(tag)){
-                                    hitMissA32.add("Hit");
-                                    break;
-                              }
-                              j++;
-                              if(j > 31){
-                                    j=0;
-                                    mapAssoc32[cont][0] = tag;
-                                    hitMissA32.add("Miss");
-                                    if (data.equals("0")) {
-                                          mapAssoc32[cont][1] = data;
-                                          cont++;
-                                          break;
-                                    }
-                                    else if (data.equals("1")) {
-                                          mapAssoc32[cont][2] = data;
-                                          cont++;
-                                          break;
-                                    }
-                              }
-                        }
-                        
-                  }
-                  else if (mapAssoc32[cont][0].equals(tag)) {
+
+                  if (mapAssoc32[cont][0].equals(tag)) {
                         hitMissA32.add("Hit");
                         if (data.equals("0")) {
                               mapAssoc32[cont][1] = data;
@@ -139,6 +106,30 @@ public class Memory {
                               mapAssoc32[cont][2] = data;
                         }
                   }
+                  
+                  else if ( mapAssoc32[cont][0].equals(" ") || !mapAssoc32[cont][0].equals(tag) ) {
+                        while(j < 32) {
+                              if (mapAssoc32[j][0].equals(tag)) {
+                                    hitMissA32.add("Hit");
+                                    break;
+                              }
+                              j++;
+                        }
+                        if(j >= 32){
+                              mapAssoc32[cont][0] = tag;
+                              hitMissA32.add("Miss");
+                              if (data.equals("0")) {
+                                    mapAssoc32[cont][1] = data;
+                              }
+                              else if (data.equals("1")) {
+                                    mapAssoc32[cont][2] = data;
+                              }
+                              cont++;
+                        }
+                        j=0;
+                        
+                  }
+                  
                   
             }
             
@@ -163,7 +154,8 @@ public class Memory {
             for (int j=0; j < binNumbers.size(); j++) {
                   gravArq.printf("%s ---- %s%n", binNumbers.get(j), hitMissA16.get(j));
             }
-            gravArq.printf("Porsentagem de acerto: %2d%n", (perHit16*100)/hitMissA16.size());
+            gravArq.printf("Porcentagem de Acerto: %2d%n", (perHit16*100)/hitMissA16.size());
+            gravArq.printf("Porcentagem de Erro: %2d%n", 100 - ((perHit16*100)/hitMissA16.size()));
             hitmiss.close();
       }
       
@@ -186,11 +178,10 @@ public class Memory {
             for (int j=0; j < binNumbers.size(); j++) {
                   gravArq.printf("%s ---- %s%n", binNumbers.get(j), hitMissA32.get(j));
             }
-            gravArq.printf("Porsentagem de acerto: %2d%n", (perHit32*100)/hitMissA32.size());
+            gravArq.printf("Porcentagem de Acerto: %2d%n", (perHit32*100)/hitMissA32.size());
+            gravArq.printf("Porcentagem de Erro: %2d%n", 100 - ((perHit32*100)/hitMissA32.size()));
             hitmiss.close();
       }
-      
-      
       
       private int percentageHit(ArrayList<String> hitMiss){
             int cont = 0;

@@ -256,7 +256,7 @@ Hit e Miss do Mapeamento Associativo 32 bits
 0000000000100100 ---- Hit
 0000000000100110 ---- Hit
 0000000000101000 ---- Hit
-0000000000101010 ---- Miss
+0000000000101010 ---- Hit
 0000000000101100 ---- Hit
 0000000000101110 ---- Hit
 0000000000110000 ---- Hit
@@ -271,7 +271,7 @@ Hit e Miss do Mapeamento Associativo 32 bits
 0000000000100100 ---- Hit
 0000000000100110 ---- Hit
 0000000000101000 ---- Hit
-0000000000101010 ---- Miss
+0000000000101010 ---- Hit
 0000000000101100 ---- Hit
 0000000000101110 ---- Hit
 0000000000110000 ---- Hit
@@ -287,4 +287,5 @@ Hit e Miss do Mapeamento Associativo 32 bits
 0000000001000100 ---- Miss
 0000000001000110 ---- Miss
 0000000000010100 ---- Miss
-Porsentagem de acerto: 15
+Porcentagem de Acerto: 15
+Porcentagem de Erro: 85

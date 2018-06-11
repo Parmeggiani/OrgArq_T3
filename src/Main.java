@@ -34,11 +34,9 @@ public class Main {
       public static void readFile() throws FileNotFoundException {
             File read = new File("binNumbers.txt");
             Scanner file = new Scanner(read);
-            int i = 0;
             while(file.hasNextLine()){
                   String str = file.nextLine();
-                  binNumbers.add(i,str);
-                  i++;
+                  binNumbers.add(str);
             }
       }
       
