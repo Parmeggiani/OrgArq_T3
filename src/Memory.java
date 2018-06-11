@@ -50,7 +50,6 @@ public class Memory {
                         else if (data.equals("11")) {
                               mapAssoc16[cont][4] = data;
                         }
-                        //continue;
                   }
                   else if (mapAssoc16[cont][0].equals("  ") || !mapAssoc16[cont][0].equals(tag)) {
                         while( j < 16){
