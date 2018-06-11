@@ -137,9 +137,9 @@ public class Memory {
             FileWriter matrix = new FileWriter("resultadosAssociativo16.txt");
             PrintWriter gravarArq = new PrintWriter(matrix);
             gravarArq.printf("Mapeamento Associativo 16 bits%n");
-            gravarArq.printf("       Tag       ---           Data        %n");
+            gravarArq.printf("Memória Associativa ---           Cache        %n");
             for (int i=0; i < 16; i++) {
-                  gravarArq.printf("[%s] --- [%s] - [%s] - [%s] - [%s]%n", mapAssoc16[i][0], mapAssoc16[i][1], mapAssoc16[i][2], mapAssoc16[i][3], mapAssoc16[i][4]);
+                  gravarArq.printf(" [%s]   --- [%s] - [%s] - [%s] - [%s]%n", mapAssoc16[i][0], mapAssoc16[i][1], mapAssoc16[i][2], mapAssoc16[i][3], mapAssoc16[i][4]);
             }
             matrix.close();
       
@@ -149,8 +149,10 @@ public class Memory {
             for (int j=0; j < binNumbers.size(); j++) {
                   gravArq.printf("%s ---- %s%n", binNumbers.get(j), hitMissA16.get(j));
             }
-            gravArq.printf("Porcentagem de Acerto: %2d%n", (perHit16*100)/hitMissA16.size());
-            gravArq.printf("Porcentagem de Erro: %2d%n", 100 - ((perHit16*100)/hitMissA16.size()));
+            gravArq.printf("Porcentagem de Hit: %2d%n", (perHit16*100)/hitMissA16.size());
+            gravArq.printf("Porcentagem de Miss: %2d%n", 100 - ((perHit16*100)/hitMissA16.size()));
+            gravArq.println("Numero de Hits: "+perHit16);
+            gravArq.println("Numero de Miss: "+(288-perHit16));
             hitmiss.close();
       }
       
@@ -161,9 +163,9 @@ public class Memory {
             FileWriter matrix = new FileWriter("resultadosAssociativo32.txt");
             PrintWriter gravarArq = new PrintWriter(matrix);
             gravarArq.printf("Mapeamento Associativo 32 bits%n");
-            gravarArq.printf("       Tag       ---     Data    %n");
+            gravarArq.printf("Memória Associativa ---   Cache    %n");
             for (int i=0; i < 16; i++) {
-                  gravarArq.printf("[%s] --- [%s] - [%s]%n", mapAssoc32[i][0], mapAssoc32[i][1], mapAssoc32[i][2]);
+                  gravarArq.printf(" [%s]  --- [%s] - [%s]%n", mapAssoc32[i][0], mapAssoc32[i][1], mapAssoc32[i][2]);
             }
             matrix.close();
             
@@ -173,8 +175,10 @@ public class Memory {
             for (int j=0; j < binNumbers.size(); j++) {
                   gravArq.printf("%s ---- %s%n", binNumbers.get(j), hitMissA32.get(j));
             }
-            gravArq.printf("Porcentagem de Acerto: %2d%n", (perHit32*100)/hitMissA32.size());
-            gravArq.printf("Porcentagem de Erro: %2d%n", 100 - ((perHit32*100)/hitMissA32.size()));
+            gravArq.printf("Porcentagem de Hit: %2d%n", (perHit32*100)/hitMissA32.size());
+            gravArq.printf("Porcentagem de Miss: %2d%n", 100 - ((perHit32*100)/hitMissA32.size()));
+            gravArq.println("Numero de Hits: "+perHit32);
+            gravArq.println("Numero de Miss: "+(288-perHit32));
             hitmiss.close();
       }
       

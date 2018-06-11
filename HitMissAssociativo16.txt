@@ -287,5 +287,7 @@ Hit e Miss do Mapeamento Associativo 16 bits
 0000000001000100 ---- Miss
 0000000001000110 ---- Hit
 0000000000010100 ---- Hit
-Porcentagem de Acerto: 54
-Porcentagem de Erro: 46
+Porcentagem de Hit: 54
+Porcentagem de Miss: 46
+Numero de Hits: 156
+Numero de Miss: 132
