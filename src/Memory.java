@@ -127,12 +127,8 @@ public class Memory {
                               cont++;
                         }
                         j=0;
-                        
                   }
-                  
-                  
             }
-            
       }
       
       public void writeOnFile16(ArrayList<String> binNumbers, String[][] mapAssoc16, ArrayList<String> hitMissA16) throws IOException {
