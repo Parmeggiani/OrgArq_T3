@@ -22,14 +22,38 @@ public class Memory {
             }
       }
       
+      private void putInData16(String data, String[][] mapAssoc16, int cont, String str){
+            if (data.equals("00")) {
+                  mapAssoc16[cont][1] = Integer.toHexString(Integer.parseInt(str, 2));
+            }
+            else if (data.equals("01")) {
+                  mapAssoc16[cont][2] = Integer.toHexString(Integer.parseInt(str, 2));
+            }
+            else if (data.equals("10")) {
+                  mapAssoc16[cont][3] = Integer.toHexString(Integer.parseInt(str, 2));
+            }
+            else if (data.equals("11")) {
+                  mapAssoc16[cont][4] = Integer.toHexString(Integer.parseInt(str, 2));
+            }
+      }
+      
+      private void putInData32(String data, String[][] mapAssoc32, int cont, String str){
+            if (data.equals("0")) {
+                  mapAssoc32[cont][1] = Integer.toHexString(Integer.parseInt(str, 2));
+            }
+            else if (data.equals("1")) {
+                  mapAssoc32[cont][2] = Integer.toHexString(Integer.parseInt(str, 2));
+            }
+      }
+      
       public void AssociativeMapping16(ArrayList<String> binNumbers, String[][] mapAssoc16, ArrayList<String> hitMissA16){
             int cont = 0;
             int j = 0;
             for(int i = 0; i<binNumbers.size(); i++){
                   
                   String str = binNumbers.get(i);
-                  String tag = str.substring(0,14);
-                  String data = str.substring(14, 16);
+                  String tag = str.substring(0,13);
+                  String data = str.substring(13, 15);
                   
                   if(cont > 15){
                         cont = 0;
@@ -37,24 +61,14 @@ public class Memory {
                   
                   if (mapAssoc16[cont][0].equals(tag)) {
                         hitMissA16.add(i,"Hit");
-                        cont++;
-                        if (data.equals("00")) {
-                              mapAssoc16[cont][1] = data;
-                        }
-                        else if (data.equals("01")) {
-                              mapAssoc16[cont][2] = data;
-                        }
-                        else if (data.equals("10")) {
-                              mapAssoc16[cont][3] = data;
-                        }
-                        else if (data.equals("11")) {
-                              mapAssoc16[cont][4] = data;
-                        }
+                        putInData16(data, mapAssoc16, cont, str);
                   }
-                  else if (mapAssoc16[cont][0].equals("  ") || !mapAssoc16[cont][0].equals(tag)) {
+                  
+                  else{
                         while( j < 16){
                               if(mapAssoc16[j][0].equals(tag)){
                                     hitMissA16.add(i,"Hit");
+                                    putInData16(data, mapAssoc16, cont, str);
                                     break;
                               }
                               j++;
@@ -62,18 +76,7 @@ public class Memory {
                         if(j>=16) {
                               mapAssoc16[cont][0] = tag;
                               hitMissA16.add(i,"Miss");
-                              if (data.equals("00")) {
-                                    mapAssoc16[cont][1] = data;
-                              }
-                              else if (data.equals("01")) {
-                                    mapAssoc16[cont][2] = data;
-                              }
-                              else if (data.equals("10")) {
-                                    mapAssoc16[cont][3] = data;
-                              }
-                              else if (data.equals("11")) {
-                                    mapAssoc16[cont][4] = data;
-                              }
+                              putInData16(data, mapAssoc16, cont, str);
                               cont++;
                         }
                         j =0;
@@ -89,8 +92,8 @@ public class Memory {
             for(int i = 0; i<binNumbers.size(); i++){
                   
                   String str = binNumbers.get(i);
-                  String tag = str.substring(0,15);
-                  String data = str.substring(15, 16);
+                  String tag = str.substring(0,14);
+                  String data = str.substring(14, 15);
                   
                   if(cont > 31){
                         cont = 0;
@@ -98,18 +101,14 @@ public class Memory {
 
                   if (mapAssoc32[cont][0].equals(tag)) {
                         hitMissA32.add("Hit");
-                        if (data.equals("0")) {
-                              mapAssoc32[cont][1] = data;
-                        }
-                        else if (data.equals("1")) {
-                              mapAssoc32[cont][2] = data;
-                        }
+                        putInData32(data, mapAssoc32, cont, str);
                   }
                   
-                  else if ( mapAssoc32[cont][0].equals(" ") || !mapAssoc32[cont][0].equals(tag) ) {
+                  else {
                         while(j < 32) {
                               if (mapAssoc32[j][0].equals(tag)) {
                                     hitMissA32.add("Hit");
+                                    putInData32(data, mapAssoc32, cont, str);
                                     break;
                               }
                               j++;
@@ -117,12 +116,7 @@ public class Memory {
                         if(j >= 32){
                               mapAssoc32[cont][0] = tag;
                               hitMissA32.add("Miss");
-                              if (data.equals("0")) {
-                                    mapAssoc32[cont][1] = data;
-                              }
-                              else if (data.equals("1")) {
-                                    mapAssoc32[cont][2] = data;
-                              }
+                              putInData32(data, mapAssoc32, cont, str);
                               cont++;
                         }
                         j=0;
